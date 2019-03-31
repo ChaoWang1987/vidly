@@ -46,6 +46,7 @@ class Movies extends Component {
   handleSort = path => {
     console.log(path);
   };
+
   render() {
     const { length: count } = this.state.movies;
     const {
