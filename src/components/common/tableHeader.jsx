@@ -1,6 +1,20 @@
 import React, { Component } from "react";
 
 class TableHeader extends Component {
+  raiseSortIcon = column => {
+    const { sortColumn } = this.props;
+
+    if (column.path !== sortColumn.path) {
+      return null;
+    }
+
+    if (sortColumn.order === "asc") {
+      return <i className="fa fa-sort-asc" />;
+    } else {
+      return <i className="fa fa-sort-desc" />;
+    }
+  };
+
   raiseSort = path => {
     const sortColumn = { ...this.props.sortColumn };
 
@@ -24,6 +38,7 @@ class TableHeader extends Component {
               onClick={() => this.raiseSort(column.path)}
             >
               {column.label}
+              {this.raiseSortIcon(column)}
             </th>
           ))}
         </tr>
