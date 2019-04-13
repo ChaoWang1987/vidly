@@ -2,16 +2,14 @@ import React, { Component } from "react";
 import _ from "lodash";
 
 class TableBody extends Component {
-  createKey = (item, column) => {
-    return item._id + (column.path || column.key);
+  renderCell = (item, column) => {
+    if (column.content) return column.content(item);
+
+    return _.get(item, column.path);
   };
 
-  renderCell = (item, column) => {
-    if (column.content) {
-      return column.content(item);
-    } else {
-      return _.get(item, column.path);
-    }
+  createKey = (item, column) => {
+    return item._id + (column.path || column.key);
   };
 
   render() {
